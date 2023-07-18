@@ -296,6 +296,7 @@ model = load_model()
 
 # model = load_model()
 song_input = st.text_input("Enter a song name:")
+song_input = np.array(song_input).reshape(1, -1)
 if st.button("Classify"):
     genre = model.predict([song_input])[0]
     st.write(f"This song's genre is predicted to be {genre}.")
