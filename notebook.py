@@ -274,33 +274,27 @@ print("Decision Tree:", np.mean(tree_score), "Logistic Regression:", np.mean(log
 
 # ## 13. Save our Model
 
-# In[14]:
-
-
 import pickle
-
-
-# In[15]:
-
-
-filename = 'trained_model.sav'
-pickle.dump(logreg, open(filename, 'wb'))
-
-
-# In[16]:
-
-
-loaded_model = pickle.load(open('trained_model.sav', 'rb'))
-
 
 st.title("Song Genre Classifier")
 st.write("Classify songs into different genres using machine learning!")
 
+filename = 'trained_model.sav'
+pickle.dump(logreg, open(filename, 'wb'))
+
 def load_model():
-    model = logreg()
+    model = pickle.load(open('trained_model.sav', 'rb'))
     return model
 
 model = load_model()
+
+# loaded_model = pickle.load(open('trained_model.sav', 'rb'))
+
+# def load_model():
+#     model = logreg()
+#     return model
+
+# model = load_model()
 song_input = st.text_input("Enter a song name:")
 if st.button("Classify"):
     genre = model.predict([song_input])[0]
