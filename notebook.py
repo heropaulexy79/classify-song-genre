@@ -37,7 +37,7 @@ echo_tracks.info()
 # <p>To get a sense of whether there are any strongly correlated features in our data, we will use built-in functions in the <code>pandas</code> package.</p>
 
 genre_mapping = {'Hip-Hop': 0, 'Rock': 1}  # Add all genre mappings
-echo_tracks['genre'] = echo_tracks['genre'].map(genre_mapping).astype(float)
+echo_tracks['genre_top'] = echo_tracks['genre_top'].map(genre_mapping).astype(float)
 corr_metrics = echo_tracks.corr()
 
 
