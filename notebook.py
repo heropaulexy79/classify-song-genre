@@ -13,6 +13,7 @@
 
 
 import pandas as pd
+import streamlit as st
 
 # Read in track metadata with genre labels
 tracks = pd.read_csv('datasets/fma-rock-vs-hiphop.csv')
@@ -292,8 +293,18 @@ pickle.dump(logreg, open(filename, 'wb'))
 loaded_model = pickle.load(open('trained_model.sav', 'rb'))
 
 
-# In[ ]:
+st.title("Song Genre Classifier")
+st.write("Classify songs into different genres using machine learning!")
 
+def load_model():
+    model = logreg()
+    return model
+
+model = load_model()
+song_input = st.text_input("Enter a song name:")
+if st.button("Classify"):
+    genre = model.predict([song_input])[0]
+    st.write(f"This song's genre is predicted to be {genre}.")
 
 
 
